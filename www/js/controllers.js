@@ -12,7 +12,8 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('LoginCtrl', function($scope, $stateParams) {
+.controller('LoginCtrl', function($scope, $stateParams, $timeout) {
+  $scope.logueado = false;
 
   $scope.login = {};
   $scope.login.usuario = "m.mirotta@gmail.com";
@@ -22,8 +23,13 @@ angular.module('starter.controllers', [])
     firebase.auth().signInWithEmailAndPassword($scope.login.usuario, $scope.login.clave).catch(function (error){
       console.info("incorrecto", error);
     }).then( function(resultado){
+      $timeout(function() {$scope.logueado = true}, 1);
       console.info("correcto", resultado);
     });
+  }
+
+  $scope.Deslogear = function (){
+    $timeout(function() {$scope.logueado = false}, 1);
   }
 });
 

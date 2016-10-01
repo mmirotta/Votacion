@@ -1,7 +1,7 @@
 <ion-view view-title="Login">
   <ion-content>
     <form>
-      <div class="list">
+      <div class="list" ng-if="!logueado">
         <label class="item item-input">
           <span class="input-label">Usuario</span>
           <input type="text" ng-model="login.usuario">
@@ -11,7 +11,12 @@
           <input type="password" ng-model="login.clave">
         </label>
         <label class="item">
-          <button class="button button-block button-positive" ng-click="Logear()" >log in</button>
+          <button class="button button-block button-positive" ng-click="Logear()" >Log In</button>
+        </label>
+      </div>
+      <div class="list" ng-if="logueado">
+        <label class="item">
+          <button class="button button-block button-positive" ng-click="Deslogear()" >Log Out</button>
         </label>
       </div>
     </form>
